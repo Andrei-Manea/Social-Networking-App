@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:local="clr-namespace:BlankApp1.Utils"
+             x:Class="BlankApp1.Views.Home"
+             BackgroundColor="{Binding BackgroundColor}">
+
+
+    <!--<ContentPage.Resources>
+        <ResourceDictionary>
+            <local:SelectedItemConvert x:Key="SelectedItemConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>-->
+
+    <ContentPage.Content>
+        <Grid VerticalOptions="FillAndExpand" 
+                     HorizontalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                
+            </Grid.RowDefinitions>
+            <BoxView Color="White" Grid.Row="1"/>
+            <ImageButton Source ="{Binding Source}"
+                         HorizontalOptions="Center"
+                         VerticalOptions="End"
+                         HeightRequest="50"
+                         WidthRequest="50"
+                         Grid.Row="1"
+                         Command="{Binding AddClicked}"
+            />
+            <ListView x:Name="MyListView"
+                      HasUnevenRows="True"
+                      ItemsSource="{Binding Items}"
+                      CachingStrategy="RecycleElement">
+
+                <!--Custom View Cells-->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label  Text="{Binding ID}" TextColor="White"/>
+                                <Label Text="{Binding Content}" TextColor="White"/>
+                                <Label Text="{Binding NrOfLikes}" TextColor="White"/>
+                                <ImageButton  Source ="{Binding LikeImageSource}"
+                                              IsOpaque="{Binding IsLiked}"
+                                              BackgroundColor="{Binding IsHighlighted}"
+                                              HorizontalOptions="Start"
+                                              VerticalOptions="End"
+                                              HeightRequest="30"
+                                              WidthRequest="30"
+                                              Command="{Binding LikeClicked}"
+                                />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <!--<ListView.Behaviors>
+                    <local:EventToCommandBehavior Command="{Binding IncrementLikeCommand}" Converter="{StaticResource SelectedItemConverter}"/>
+                </ListView.Behaviors>-->
+            </ListView>
+            <ImageButton Source ="{Binding SettingsSource}"
+                         HorizontalOptions="End"
+                         VerticalOptions="End"
+                         HeightRequest="50"
+                         WidthRequest="50"
+                         Grid.Row="1"
+                         Command="{Binding SettingsClicked}"
+                />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

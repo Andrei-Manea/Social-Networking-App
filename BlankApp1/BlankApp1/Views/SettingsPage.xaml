@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             x:Class="BlankApp1.Views.SettingsPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        
+        <Picker Title="Select a Color"
+                Grid.Row="0" Grid.Column="0"
+                SelectedItem="{Binding BackgroundColor}">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Red</x:String>
+                    <x:String>Blue</x:String>
+                    <x:String>Green</x:String>
+                    <x:String>Yellow</x:String>
+                    <x:String>Orange</x:String>
+                    <x:String>Indigo</x:String>
+                    <x:String>Violet</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+        <Button Text="Change Color"
+                    Grid.Row="0"
+                    HorizontalOptions="End" 
+                    Grid.Column="1"
+                    Command="{Binding ChangeColor}"
+                />
+    </Grid>
+</ContentPage>
